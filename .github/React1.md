@@ -38,7 +38,7 @@
 
 ### Funktions- und Klassenkomponenten
 
-#### Funktionskomponente:
+#### Funktionskomponente
 
 ```jsx
 function Welcome(props) {
@@ -46,7 +46,7 @@ function Welcome(props) {
 }
 ```
 
-#### Klassenkomponente:
+#### Klassenkomponente
 
 ```jsx
 class Welcome extends React.Component {
