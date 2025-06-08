@@ -1,0 +1,19 @@
+# Dependency directories
+node_modules
+.yarn
+.pnp.*
+
+# Build directories
+dist
+build
+
+# Coverage directory
+coverage
+
+# Misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
