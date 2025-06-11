@@ -1,28 +1,41 @@
-import React from "react";
+import { useState } from 'react';
+import { useSelector } from "react-redux";
 import "../layout/styles/LandingPage.css";
+import type { RootState } from "../store/store";
+import LoginDialog from './LoginDialog';
 
-class LandingPage extends React.Component {
+function LandingPage() {
+    const [showLoginDialog, setShowLoginDialog] = useState(false);
+    const isLoggedIn = useSelector((state: RootState) => state.authentication.isLoggedIn);
 
-    handleOpenLoginDialog = () => {
-        console.log("Login dialog opened");
+    const handleOpenLoginDialog = () => {
+        setShowLoginDialog(true);
     };
 
-    handleCloseLoginDialog = () => {
-        console.log("Login dialog closed");
+    const handleCloseLoginDialog = () => {
+        setShowLoginDialog(false);
     };
 
-    render() {
-        return (
-            <div className="landing-page-container" id="LandingPage">
-                <h1>Landing Page!</h1>
-                <p>This is a simple React application built with Vite.</p>
+    if (isLoggedIn) return null;
 
-                <button className="login-button" onClick={this.handleOpenLoginDialog}>
-                    Open Login Dialog
-                </button>
-            </div>
-        );
-    }
+    return (
+        <div className="landing-page-container" id="LandingPage">
+            <h1>Landing Page!</h1>
+            <p>Please log in.</p>
+
+            <button
+                id="OpenLoginDialogButton"
+                className="login-button"
+                onClick={handleOpenLoginDialog}
+            >
+                Login
+            </button>
+
+            {showLoginDialog && (
+                <LoginDialog onClose={handleCloseLoginDialog} />
+            )}
+        </div>
+    );
 }
 
 export default LandingPage;

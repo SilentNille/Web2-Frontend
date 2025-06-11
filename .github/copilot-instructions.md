@@ -11,11 +11,13 @@ Do not write more than is necessary to fulfill the requirements of the current m
 Do not write comments in the code.
 
 ## References
-- in [Gesamt-Anforderungen](./Gesamt-Aufgabe.md) are the overall requirements for the project.
-- in [Meilenstein 1](./Meilenstein1.md) are the functional requirements for the first milestone.
+- in [Gesamt-Anforderungen](./references/Gesamt-Aufgabe.md) are the overall requirements for the project.
+- in [Meilenstein 1](./references/Meilenstein1.md) are the functional requirements for the first milestone.
 
-- in [React](./React1.md) are contents of the first React lesson.
-- in [React 2](./React2.md) are contents of the second React lesson.
-- in [ReactBeispielanwendung](./ReactBeispielanwendung.md) is a React example application that can be used as a reference.
-- in [Redux](./Redux.md) are contents of the first Redux lesson.
-- in [Komponenten](./Komponente.md) are contents of the first components lesson.
+- in [React](./references/React1.md) are contents of the first React lesson.
+- in [React 2](./references/React2.md) are contents of the second React lesson.
+- in [ReactBeispielanwendung](./references/ReactBeispielanwendung.md) is a React example application that can be used as a reference.
+- in [Redux](./references/Redux.md) are contents of the first Redux lesson.
+- in [Komponenten](./references/Komponente.md) are contents of the first components lesson.
+- in [Http-Tests](./references/httpTests.http) are tests for the HTTP API that can be used to test the application and for you to understand the endpoints of the api
+- in [Endpoints](./references/API_ENDPOINTS.md) are the API endpoints of the backend.
