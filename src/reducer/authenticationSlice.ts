@@ -18,11 +18,11 @@ const authenticationSlice = createSlice({
             if (action.payload.token) state.token = action.payload.token;
             state.isLoggedIn = true;
         },
-        loginFailure: state => {
+        loginFailure: (state) => {
             state.token = "";
             state.isLoggedIn = false;
         },
-        logout: state => {
+        logout: (state) => {
             state.token = "";
             state.isLoggedIn = false;
         },

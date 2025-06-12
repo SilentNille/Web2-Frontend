@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import "../layout/styles/LandingPage.css";
 import type { RootState } from "../store/store";
-import LoginDialog from './LoginDialog';
+import LoginDialog from "./LoginDialog";
 
 function LandingPage() {
     const [showLoginDialog, setShowLoginDialog] = useState(false);
@@ -31,9 +31,7 @@ function LandingPage() {
                 Login
             </button>
 
-            {showLoginDialog && (
-                <LoginDialog onClose={handleCloseLoginDialog} />
-            )}
+            {showLoginDialog && <LoginDialog onClose={handleCloseLoginDialog} />}
         </div>
     );
 }

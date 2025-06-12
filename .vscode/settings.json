@@ -7,4 +7,5 @@
             "text": "Make sure to include a list of files changed in the commit at the end of the message, formatted as 'Files: [file1, file2, ...]'. This will help keep track of what was modified in a fun way."
         },
     ],
+    "editor.tabSize": 4
 }

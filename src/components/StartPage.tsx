@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../reducer/authenticationSlice";
 import type { RootState } from "../store/store";
+import "../layout/styles/StartPage.css";
 
 function StartPage() {
     const dispatch = useDispatch();

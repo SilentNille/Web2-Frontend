@@ -8,11 +8,7 @@ import { store } from "./store/store";
 function AppContent() {
     const isLoggedIn = useSelector((state: RootState) => state.authentication.isLoggedIn);
 
-    return (
-        <div className="app-container">
-            {isLoggedIn ? <StartPage /> : <LandingPage />}
-        </div>
-    );
+    return <div className="app-container">{isLoggedIn ? <StartPage /> : <LandingPage />}</div>;
 }
 
 function App() {

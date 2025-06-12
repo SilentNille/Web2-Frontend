@@ -1,16 +1,16 @@
 .login-dialog {
-background: white;
-padding: 30px;
-border-radius: 8px;
-width: 300px;
-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .login-dialog h2 {
-margin-top: 0;
-margin-bottom: 20px;
-text-align: center;
-color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
 }
 
 .login-dialog form {
@@ -27,10 +27,10 @@ color: #333;
 }
 
 .login-dialog label {
-display: block;
-margin-bottom: 5px;
-font-weight: bold;
-color: #555;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
 }
 
 .login-dialog input {
@@ -44,8 +44,8 @@ color: #555;
 }
 
 .login-dialog input:focus {
-border-color: #007bff;
-outline: none;
+    border-color: #007bff;
+    outline: none;
 }
 
 .login-dialog button {
