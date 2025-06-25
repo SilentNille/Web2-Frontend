@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "../layout/styles/LoginDialog.css";
 import { loginFailure, loginSuccess } from "../reducer/authenticationSlice";
 import { login } from "../services/authenticationService";
@@ -12,6 +13,7 @@ function LoginDialog({ onClose }: LoginDialogProps) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -21,6 +23,7 @@ function LoginDialog({ onClose }: LoginDialogProps) {
             .then((response) => {
                 dispatch(loginSuccess({ token: response.token, isAdmin: response.isAdmin }));
                 onClose?.();
+                navigate("/start");
             })
             .catch(() => {
                 dispatch(loginFailure());

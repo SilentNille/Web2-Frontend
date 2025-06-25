@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "../layout/styles/LandingPage.css";
 import type { RootState } from "../store/store";
 import LoginDialog from "./LoginDialog";
@@ -7,6 +8,13 @@ import LoginDialog from "./LoginDialog";
 function LandingPage() {
     const [showLoginDialog, setShowLoginDialog] = useState(false);
     const isLoggedIn = useSelector((state: RootState) => state.authentication.isLoggedIn);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate("/start");
+        }
+    }, [isLoggedIn, navigate]);
 
     const handleOpenLoginDialog = () => {
         setShowLoginDialog(true);
@@ -15,8 +23,6 @@ function LandingPage() {
     const handleCloseLoginDialog = () => {
         setShowLoginDialog(false);
     };
-
-    if (isLoggedIn) return null;
 
     return (
         <div id="LandingPage">

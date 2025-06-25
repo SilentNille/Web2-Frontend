@@ -1,22 +1,23 @@
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import "./App.css";
 import LandingPage from "./components/LandingPage";
 import StartPage from "./components/StartPage";
-import type { RootState } from "./store/store";
+import UserManagementPage from './components/UserManagement';
 import { store } from "./store/store";
-
-function AppContent() {
-    const isLoggedIn = useSelector((state: RootState) => state.authentication.isLoggedIn);
-
-    return <div className="app-container">
-        {isLoggedIn ? (<StartPage />) : (<LandingPage />)}
-    </div>
-}
 
 function App() {
     return (
         <Provider store={store}>
-            <AppContent />
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/start" element={<StartPage />} />
+                    <Route path="/user-management" element={<UserManagementPage />} />
+                    <Route path="/degree-course-management" element={<div>Degree Course Management Page</div>} />
+                    <Route path="/application-management" element={<div>Application Management Page</div>} />
+                </Routes>
+            </BrowserRouter>
         </Provider>
     );
 }
