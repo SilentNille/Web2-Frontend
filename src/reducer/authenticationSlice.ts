@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 interface UserProps {
     token: string;
     isLoggedIn: boolean;
+    isAdmin: boolean;
 }
 
 const userProps: UserProps = {
     token: "",
     isLoggedIn: false,
+    isAdmin: false,
 };
 
 const authenticationSlice = createSlice({
@@ -15,8 +17,9 @@ const authenticationSlice = createSlice({
     initialState: userProps,
     reducers: {
         loginSuccess: (state, action) => {
-            if (action.payload.token) state.token = action.payload.token;
             state.isLoggedIn = true;
+            state.token = action.payload.token || "";
+            state.isAdmin = action.payload.isAdmin || false;
         },
         loginFailure: (state) => {
             state.token = "";
@@ -28,6 +31,7 @@ const authenticationSlice = createSlice({
         },
     },
 });
+
 
 export const { loginSuccess, loginFailure, logout } = authenticationSlice.actions;
 export const authenticationReducer = authenticationSlice.reducer;

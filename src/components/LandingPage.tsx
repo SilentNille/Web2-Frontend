@@ -19,15 +19,11 @@ function LandingPage() {
     if (isLoggedIn) return null;
 
     return (
-        <div className="landing-page-container" id="LandingPage">
+        <div id="LandingPage">
             <h1>Landing Page!</h1>
-            <p>Please log in.</p>
+            <p>Bitte einloggen.</p>
 
-            <button
-                id="OpenLoginDialogButton"
-                className="login-button"
-                onClick={handleOpenLoginDialog}
-            >
+            <button id="OpenLoginDialogButton" onClick={handleOpenLoginDialog}>
                 Login
             </button>
 

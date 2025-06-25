@@ -19,7 +19,7 @@ function LoginDialog({ onClose }: LoginDialogProps) {
         // Call the login service with the provided credentials
         login({ username, password })
             .then((response) => {
-                dispatch(loginSuccess({ token: response.token }));
+                dispatch(loginSuccess({ token: response.token, isAdmin: response.isAdmin }));
                 onClose?.();
             })
             .catch(() => {

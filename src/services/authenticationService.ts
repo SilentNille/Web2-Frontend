@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 export interface LoginCredentials {
     username: string;
     password: string;
@@ -5,6 +6,7 @@ export interface LoginCredentials {
 
 export interface LoginResponse {
     token: string;
+    isAdmin: boolean;
 }
 
 export const login = async (credentials: LoginCredentials): Promise<LoginResponse> => {
@@ -33,8 +35,9 @@ export const login = async (credentials: LoginCredentials): Promise<LoginRespons
         }
 
         const token = authHeader.split(" ")[1];
+        const isAdmin = jwtDecode(token).isAdministrator || false;
 
-        return { token };
+        return { token, isAdmin };
     } catch (error) {
         console.error("login - error:", error);
         throw error;
