@@ -46,22 +46,20 @@ function MyNavBar() {
                     <Navbar.Toggle />
                     <Navbar.Collapse>
                         <Nav className="me-auto">
+                            <Nav.Link id="OpenStartPageButton" onClick={goToStart} >
+                                Home
+                            </Nav.Link>
                             {isAdmin && (
-                                <>
-                                    <Nav.Link onClick={goToStart} >
-                                        Home
-                                    </Nav.Link>
-                                    <Nav.Link id="OpenUserManagementPageButton" onClick={goToUserManagement}>
-                                        User Management
-                                    </Nav.Link>
-                                    <Nav.Link id="OpenDegreeCourseManagementPageButton" onClick={goToDegreeCourseManagement} >
-                                        Degree Courses
-                                    </Nav.Link>
-                                    <Nav.Link id="OpenDegreeCourseApplicationManagementPageButton" onClick={goToApplicationManagement} >
-                                        Applications
-                                    </Nav.Link>
-                                </>
+                                <Nav.Link id="OpenUserManagementPageButton" onClick={goToUserManagement}>
+                                    User Management
+                                </Nav.Link>
                             )}
+                            <Nav.Link id="OpenDegreeCourseManagementPageButton" onClick={goToDegreeCourseManagement} >
+                                Degree Courses
+                            </Nav.Link>
+                            <Nav.Link id="OpenDegreeCourseApplicationManagementPageButton" onClick={goToApplicationManagement} >
+                                Applications
+                            </Nav.Link>
                         </Nav>
                         <Button onClick={handleLogout} id="LogoutButton" >
                             Logout

@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Alert, Button, Container, Spinner, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteApplication, fetchApplications, fetchMyApplications } from "../../reducer/applicationSlice";
+import { setDegreeCourses } from "../../reducer/degreeCourseSlice";
+import { degreeCourseService } from "../../services/degreeCourseService";
+import { userService } from "../../services/userService";
 import type { AppDispatch, RootState } from "../../store/store";
 import type { DegreeCourseApplication } from "../../types/DegreeCourseApplication";
 import MyNavBar from '../MyNavBar';
@@ -14,6 +17,8 @@ function ApplicationManagementPage() {
 
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [selectedApplication, setSelectedApplication] = useState<DegreeCourseApplication | null>(null);
+    const [enrichedApplications, setEnrichedApplications] = useState<DegreeCourseApplication[]>([]);
+    const [loadingCourses, setLoadingCourses] = useState(false);
 
     useEffect(() => {
         if (token) {
@@ -24,6 +29,52 @@ function ApplicationManagementPage() {
             }
         }
     }, [token, isAdmin, dispatch]);
+
+    useEffect(() => {
+        async function fetchDegreeCourseData() {
+            if (!applications.length || !token) return;
+
+            setLoadingCourses(true);
+            try {
+                const [courses, users] = await Promise.all([
+                    degreeCourseService.getDegreeCourses(token),
+                    isAdmin ? userService.getAllUsers(token) : Promise.resolve([])
+                ]);
+
+                const courseMap = new Map();
+                courses.forEach(course => courseMap.set(course.id, course));
+
+                const userMap = new Map();
+                users.forEach(user => userMap.set(user.userID, user));
+
+                const enriched = applications
+                    .filter(app => {
+                        const courseExists = courseMap.has(app.degreeCourseID);
+                        const userExists = !isAdmin || userMap.has(app.applicantUserID);
+                        return courseExists && userExists;
+                    })
+                    .map(app => {
+                        const course = courseMap.get(app.degreeCourseID);
+                        return {
+                            ...app,
+                            degreeCourse: {
+                                name: course.name,
+                                universityShortName: course.universityShortName
+                            }
+                        };
+                    });
+
+                setEnrichedApplications(enriched);
+                dispatch(setDegreeCourses(courses));
+            } catch (err) {
+                console.error('Failed to fetch degree course data:', err);
+            } finally {
+                setLoadingCourses(false);
+            }
+        }
+
+        fetchDegreeCourseData();
+    }, [applications, token, dispatch, isAdmin]);
 
     const handleDeleteApplication = async () => {
         if (!token || !selectedApplication?.id) return;
@@ -42,7 +93,7 @@ function ApplicationManagementPage() {
         setShowDeleteDialog(true);
     };
 
-    if (loading) {
+    if (loading || loadingCourses) {
         return (
             <div id="DegreeCourseApplicationManagementPage">
                 <MyNavBar />
@@ -89,17 +140,17 @@ function ApplicationManagementPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {applications.map((application: DegreeCourseApplication) => (
+                        {enrichedApplications.map((application: DegreeCourseApplication) => (
                             <tr key={application.id} id={`DegreeCourseApplicationItem${application.id}`}>
                                 <td id="ApplicantUserID">{application.applicantUserID}</td>
-                                <td id="DegreeCourseName">{application.degreeCourse?.name || application.degreeCourseShortName || 'N/A'}</td>
+                                <td id="DegreeCourseName">{application.degreeCourse?.name}</td>
                                 <td id="TargetPeriodYear">{application.targetPeriodYear}</td>
                                 <td id="TargetPeriodShortName">{application.targetPeriodShortName}</td>
-                                <td id="UniversityShortName">{application.degreeCourse?.universityShortName || application.universityShortName || 'N/A'}</td>
+                                <td id="UniversityShortName">{application.degreeCourse?.universityShortName}</td>
                                 <td>
                                     {(isAdmin || application.applicantUserID === userID) && (
                                         <Button
-                                            id={`DegreeCourseApplicationItemDeleteButton${application.id}`}
+                                            id={`DegreeCourseApplicationDeleteButton${application.id}`}
                                             variant="outline-danger"
                                             size="sm"
                                             onClick={() => openDeleteDialog(application)}
@@ -113,7 +164,7 @@ function ApplicationManagementPage() {
                     </tbody>
                 </Table>
 
-                {applications.length === 0 && (
+                {enrichedApplications.length === 0 && (
                     <div className="text-center mt-4">
                         <p>No applications found.</p>
                     </div>
