@@ -4,12 +4,14 @@ interface UserProps {
     token: string;
     isLoggedIn: boolean;
     isAdmin: boolean;
+    userID: string;
 }
 
 const userProps: UserProps = {
     token: "",
     isLoggedIn: false,
     isAdmin: false,
+    userID: "",
 };
 
 const authenticationSlice = createSlice({
@@ -20,6 +22,7 @@ const authenticationSlice = createSlice({
             state.isLoggedIn = true;
             state.token = action.payload.token || "";
             state.isAdmin = action.payload.isAdmin || false;
+            state.userID = action.payload.userID || "";
         },
         loginFailure: (state) => {
             state.token = "";
@@ -28,6 +31,8 @@ const authenticationSlice = createSlice({
         logout: (state) => {
             state.token = "";
             state.isLoggedIn = false;
+            state.isAdmin = false;
+            state.userID = "";
         },
     },
 });

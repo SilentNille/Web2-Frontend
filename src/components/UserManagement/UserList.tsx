@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, showCreateForm } from "../../reducer/userSlice";
 import type { AppDispatch, RootState } from "../../store/store";
 import UserItem from "./UserItem";
+import { Button, Container } from 'react-bootstrap';
 
 function UserList() {
     const dispatch = useDispatch<AppDispatch>();
@@ -20,21 +21,21 @@ function UserList() {
     };
 
     return (
-        <div id="UserManagementPageListComponent">
-            <div>
-                <button id="UserManagementPageCreateUserButton" onClick={handleCreateUser}>
+        <Container id="UserManagementPageListComponent">
+            <Container>
+            <Button variant="outline-primary" id="UserManagementPageCreateUserButton" onClick={handleCreateUser}>
                     Create User
-                </button>
-            </div>
+                </Button>
+            </Container>
 
-            <div>
+            <Container>
                 {users.length === 0 ? (
                     <p>No users found</p>
                 ) : (
                     users.map((user) => <UserItem key={user.userID} user={user} />)
                 )}
-            </div>
-        </div>
+            </Container>
+        </Container>
     );
 }
 

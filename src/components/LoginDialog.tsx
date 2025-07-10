@@ -1,10 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { Alert, Button, Form, InputGroup, Modal, Spinner } from "react-bootstrap";
-import { FaExclamationTriangle, FaLock, FaSignInAlt, FaUser } from 'react-icons/fa';
+import { FaLock, FaUser } from 'react-icons/fa';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import "../layout/styles/LoginDialog.css";
 import { loginFailure, loginSuccess } from "../reducer/authenticationSlice";
 import { login } from "../services/authenticationService";
 

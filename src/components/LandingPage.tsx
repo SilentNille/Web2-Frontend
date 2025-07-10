@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import "../layout/styles/LandingPage.css";
 import type { RootState } from "../store/store";
 import LoginDialog from "./LoginDialog";
+import { Button, Container } from 'react-bootstrap';
 
 function LandingPage() {
     const [showLoginDialog, setShowLoginDialog] = useState(false);
@@ -25,16 +25,20 @@ function LandingPage() {
     };
 
     return (
-        <div id="LandingPage">
-            <h1>Landing Page!</h1>
-            <p>Bitte einloggen.</p>
+        <Container id="LandingPage">
+            <h1>Welcome to Student Application Portal</h1>
+            <p className="lead">Please log in</p>
 
-            <button id="OpenLoginDialogButton" onClick={handleOpenLoginDialog}>
+            <Button
+                variant="primary"
+                id="OpenLoginDialogButton"
+                onClick={handleOpenLoginDialog}
+            >
                 Login
-            </button>
+            </Button>
 
             {showLoginDialog && <LoginDialog onClose={handleCloseLoginDialog} />}
-        </div>
+        </Container>
     );
 }
 

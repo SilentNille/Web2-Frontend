@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { createUser, hideCreateForm } from "../../reducer/userSlice";
 import type { AppDispatch, RootState } from "../../store/store";
@@ -36,10 +37,10 @@ function CreateUserForm() {
     };
 
     return (
-        <div id="UserManagementPageCreateComponent">
+        <Container id="UserManagementPageCreateComponent">
             <h2>Create New User</h2>
             <form onSubmit={handleSubmit}>
-                <div>
+                <Container>
                     <label>
                         User ID:
                         <input
@@ -51,9 +52,9 @@ function CreateUserForm() {
                             required
                         />
                     </label>
-                </div>
+                </Container>
 
-                <div>
+                <Container>
                     <label>
                         First Name:
                         <input
@@ -65,9 +66,9 @@ function CreateUserForm() {
                             required
                         />
                     </label>
-                </div>
+                </Container>
 
-                <div>
+                <Container>
                     <label>
                         Last Name:
                         <input
@@ -79,9 +80,9 @@ function CreateUserForm() {
                             required
                         />
                     </label>
-                </div>
+                </Container>
 
-                <div>
+                <Container>
                     <label>
                         Password:
                         <input
@@ -93,9 +94,9 @@ function CreateUserForm() {
                             required
                         />
                     </label>
-                </div>
+                </Container>
 
-                <div>
+                <Container>
                     <label>
                         <input
                             id="CreateUserComponentEditIsAdministrator"
@@ -106,22 +107,22 @@ function CreateUserForm() {
                         />
                         Is Administrator
                     </label>
-                </div>
+                </Container>
 
-                <div>
-                    <button id="CreateUserComponentCreateUserButton" type="submit">
+                <Container>
+                    <Button id="CreateUserComponentCreateUserButton" type="submit">
                         Create User
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         id="OpenUserManagementPageListComponentButton"
                         type="button"
                         onClick={handleCancel}
                     >
                         Cancel
-                    </button>
-                </div>
+                    </Button>
+                </Container>
             </form>
-        </div>
+        </Container>
     );
 }
 

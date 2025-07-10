@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux";
-import type { RootState } from "../store/store";
-import CreateUserForm from "./UserManagement/CreateUserForm";
-import DeleteUserDialog from "./UserManagement/DeleteUserDialog";
-import EditUserForm from "./UserManagement/EditUserForm";
-import UserList from "./UserManagement/UserList";
 import { useNavigate } from "react-router-dom";
+import type { RootState } from "../../store/store";
+import CreateUserForm from "./CreateUserForm";
+import DeleteUserDialog from "./DeleteUserDialog";
+import EditUserForm from "./EditUserForm";
+import UserList from "./UserList";
+import { Button, Container } from 'react-bootstrap';
+import MyNavBar from '../MyNavBar';
 
 function UserManagementPage() {
     const { isAdmin } = useSelector((state: RootState) => state.authentication);
@@ -18,8 +20,9 @@ function UserManagementPage() {
     };
 
     return (
-        <div id="UserManagementPage">
-            <div>
+        <Container id="UserManagementPage">
+            <MyNavBar />
+            <Container>
                 <h1>User Management</h1>
 
                 {showCreateForm ? (
@@ -31,11 +34,11 @@ function UserManagementPage() {
                 )}
 
                 <DeleteUserDialog />
-                <button id="OpenUserManagementPageButton" onClick={goToStart}>
+                <Button id="OpenUserManagementPageButton" onClick={goToStart}>
                     Zurück zur Startseite
-                </button>
-            </div>
-        </div>
+                </Button>
+            </Container>
+        </Container>
     );
 }
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { hideEditForm, updateUser } from "../../reducer/userSlice";
 import type { AppDispatch, RootState } from "../../store/store";
@@ -61,89 +62,39 @@ function EditUserForm() {
     }
 
     return (
-        <div id="UserManagementPageEditComponent">
+        <Container id="UserManagementPageEditComponent">
             <h2>Edit User</h2>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>
-                        User ID:
-                        <input
-                            id="EditUserComponentEditUserID"
-                            type="text"
-                            value={editingUser.userID}
-                            onChange={handleChange}
-                        />
-                    </label>
-                </div>
+                <Container>
+                    <label> User ID: <input id="EditUserComponentEditUserID" type="text" value={editingUser.userID} onChange={handleChange} /> </label>
+                </Container>
 
-                <div>
-                    <label>
-                        First Name:
-                        <input
-                            id="EditUserComponentEditFirstName"
-                            type="text"
-                            name="firstName"
-                            value={formData.firstName}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                </div>
+                <Container>
+                    <label> First Name: <input id="EditUserComponentEditFirstName" type="text" name="firstName" value={formData.firstName} onChange={handleChange} required /> </label>
+                </Container>
 
-                <div>
-                    <label>
-                        Last Name:
-                        <input
-                            id="EditUserComponentEditLastName"
-                            type="text"
-                            name="lastName"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                </div>
+                <Container>
+                    <label> Last Name: <input id="EditUserComponentEditLastName" type="text" name="lastName" value={formData.lastName} onChange={handleChange} required /> </label>
+                </Container>
 
-                <div>
-                    <label>
-                        Password:
-                        <input
-                            id="EditUserComponentEditPassword"
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                        />
-                    </label>
-                </div>
+                <Container>
+                    <label> Password: <input id="EditUserComponentEditPassword" type="password" name="password" value={formData.password} onChange={handleChange} /> </label>
+                </Container>
 
-                <div>
-                    <label>
-                        <input
-                            id="EditUserComponentEditIsAdministrator"
-                            type="checkbox"
-                            name="isAdministrator"
-                            checked={formData.isAdministrator}
-                            onChange={handleChange}
-                        />
-                        Is Administrator
-                    </label>
-                </div>
+                <Container>
+                    <label> <input id="EditUserComponentEditIsAdministrator" type="checkbox" name="isAdministrator" checked={formData.isAdministrator} onChange={handleChange} /> Is Administrator </label>
+                </Container>
 
-                <div>
-                    <button id="EditUserComponentSaveUserButton" type="submit">
+                <Container>
+                    <Button variant="success" id="EditUserComponentSaveUserButton" type="submit">
                         Save User
-                    </button>
-                    <button
-                        id="OpenUserManagementPageListComponentButton"
-                        type="button"
-                        onClick={handleCancel}
-                    >
+                    </Button>
+                    <Button variant="outline-secondary" id="OpenUserManagementPageListComponentButton" type="button" onClick={handleCancel} >
                         Cancel
-                    </button>
-                </div>
+                    </Button>
+                </Container>
             </form>
-        </div>
+        </Container>
     );
 }
 

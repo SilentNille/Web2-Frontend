@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, hideDeleteDialog } from "../../reducer/userSlice";
 import type { AppDispatch, RootState } from "../../store/store";
+import { Button, Container } from 'react-bootstrap';
 
 function DeleteUserDialog() {
     const dispatch = useDispatch<AppDispatch>();
@@ -22,20 +23,18 @@ function DeleteUserDialog() {
     }
 
     return (
-        <div>
-            <div id={`DeleteDialogUser${showDeleteDialog}`}>
-                <h3>Confirm Delete</h3>
-                <p>Are you sure you want to delete user "{showDeleteDialog}"?</p>
-                <div>
-                    <button id="DeleteDialogConfirmButton" onClick={handleConfirmDelete}>
-                        Delete
-                    </button>
-                    <button id="DeleteDialogCancelButton" onClick={handleCancelDelete}>
-                        Cancel
-                    </button>
-                </div>
-            </div>
-        </div>
+        <Container id={`DeleteDialogUser${showDeleteDialog}`}>
+            <h3>Confirm Delete</h3>
+            <p>Are you sure you want to delete user "{showDeleteDialog}"?</p>
+            <Container>
+                <Button variant="danger" id="DeleteDialogConfirmButton" onClick={handleConfirmDelete}>
+                    Delete
+                </Button>
+                <Button variant="secondary" id="DeleteDialogCancelButton" onClick={handleCancelDelete}>
+                    Cancel
+                </Button>
+            </Container>
+        </Container>
     );
 }
 
