@@ -14,6 +14,7 @@ Do not write comments in the code.
 - in [Gesamt-Anforderungen](./references/Gesamt-Aufgabe.md) are the overall requirements for the project.
 - in [Meilenstein 1](./references/Meilenstein1.md) are the functional requirements for the first milestone.
 - in [Meilenstein 2](./references/Meilenstein2.md) are the functional requirements for the second milestone.
+- in [Meilenstein 3](./references/Meilenstein3.md) are the functional requirements for the third milestone.
 
 - in [React](./references/React1.md) are contents of the first React lesson.
 - in [React 2](./references/React2.md) are contents of the second React lesson.
