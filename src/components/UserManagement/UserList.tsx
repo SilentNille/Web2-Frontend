@@ -1,9 +1,9 @@
 import { useEffect } from "react";
+import { Button, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, showCreateForm } from "../../reducer/userSlice";
 import type { AppDispatch, RootState } from "../../store/store";
 import UserItem from "./UserItem";
-import { Button, Container } from 'react-bootstrap';
 
 function UserList() {
     const dispatch = useDispatch<AppDispatch>();

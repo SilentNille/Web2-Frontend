@@ -23,6 +23,7 @@ import CreateDegreeCourseForm from './CreateDegreeCourseForm';
 import DegreeCourseList from './DegreeCourseList';
 import DeleteDegreeCourseDialog from './DeleteDegreeCourseDialog';
 import EditDegreeCourseForm from './EditDegreeCourseForm';
+import StartPageButton from '../StartPageButton';
 
 function DegreeCourseManagementPage() {
     const dispatch = useDispatch();
@@ -254,6 +255,7 @@ function DegreeCourseManagementPage() {
                 onSubmit={handleCreateApplication}
                 onCancel={() => setShowCreateApplication(false)}
             />
+            <StartPageButton />
         </div>
     );
 }

@@ -9,6 +9,7 @@ import type { AppDispatch, RootState } from "../../store/store";
 import type { DegreeCourseApplication } from "../../types/DegreeCourseApplication";
 import MyNavBar from '../MyNavBar';
 import DeleteApplicationDialog from './DeleteApplicationDialog';
+import StartPageButton from '../StartPageButton';
 
 function ApplicationManagementPage() {
     const dispatch = useDispatch<AppDispatch>();
@@ -148,16 +149,14 @@ function ApplicationManagementPage() {
                                 <td id="TargetPeriodShortName">{application.targetPeriodShortName}</td>
                                 <td id="UniversityShortName">{application.degreeCourse?.universityShortName}</td>
                                 <td>
-                                    {(isAdmin || application.applicantUserID === userID) && (
-                                        <Button
-                                            id={`DegreeCourseApplicationDeleteButton${application.id}`}
-                                            variant="outline-danger"
-                                            size="sm"
-                                            onClick={() => openDeleteDialog(application)}
-                                        >
-                                            Delete
-                                        </Button>
-                                    )}
+                                    <Button
+                                        id={`DegreeCourseApplicationDeleteButton${application.id}`}
+                                        variant="outline-danger"
+                                        size="sm"
+                                        onClick={() => openDeleteDialog(application)}
+                                    >
+                                        Delete
+                                    </Button>
                                 </td>
                             </tr>
                         ))}
@@ -169,6 +168,8 @@ function ApplicationManagementPage() {
                         <p>No applications found.</p>
                     </div>
                 )}
+
+                <StartPageButton />
             </Container>
 
             <DeleteApplicationDialog

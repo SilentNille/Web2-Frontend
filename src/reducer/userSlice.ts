@@ -76,15 +76,39 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            .addCase(fetchUsers.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
             .addCase(fetchUsers.fulfilled, (state, action) => {
                 state.loading = false;
                 state.users = action.payload;
             })
+            .addCase(fetchUsers.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || 'Failed to fetch users';
+            })
+
+            .addCase(createUser.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
             .addCase(createUser.fulfilled, (state, action) => {
+                state.loading = false;
                 state.users.push(action.payload);
                 state.showCreateForm = false;
             })
+            .addCase(createUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || 'Failed to create user';
+            })
+
+            .addCase(updateUser.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
             .addCase(updateUser.fulfilled, (state, action) => {
+                state.loading = false;
                 const index = state.users.findIndex(
                     (user) => user.userID === action.payload.userID
                 );
@@ -93,9 +117,23 @@ const userSlice = createSlice({
                 }
                 state.editingUser = null;
             })
+            .addCase(updateUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || 'Failed to update user';
+            })
+
+            .addCase(deleteUser.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
             .addCase(deleteUser.fulfilled, (state, action) => {
+                state.loading = false;
                 state.users = state.users.filter((user) => user.userID !== action.payload);
                 state.showDeleteDialog = null;
+            })
+            .addCase(deleteUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || 'Failed to delete user';
             });
     },
 });

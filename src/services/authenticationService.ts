@@ -7,6 +7,7 @@ export interface LoginCredentials {
 export interface LoginResponse {
     token: string;
     isAdmin: boolean;
+    userID: string;
 }
 
 export const login = async (credentials: LoginCredentials): Promise<LoginResponse> => {
@@ -34,10 +35,13 @@ export const login = async (credentials: LoginCredentials): Promise<LoginRespons
             throw new Error("No authorization token received");
         }
 
-        const token = authHeader.split(" ")[1];
-        const isAdmin = jwtDecode(token).isAdministrator || false;
+        const token = authHeader.startsWith('Bearer ') ? authHeader.split(" ")[1] : authHeader;
 
-        return { token, isAdmin };
+        const decodedToken = jwtDecode(token);
+        const isAdmin = decodedToken.isAdministrator || false;
+        const userID = decodedToken.sub || credentials.username;
+
+        return { token, isAdmin, userID };
     } catch (error) {
         console.error("login - error:", error);
         throw error;

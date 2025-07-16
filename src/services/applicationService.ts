@@ -14,7 +14,7 @@ async function getMyApplications(token: string): Promise<DegreeCourseApplication
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': token
+            'Authorization': `Bearer ${token}`
         }
     };
 
@@ -28,7 +28,7 @@ async function getApplications(token: string): Promise<DegreeCourseApplication[]
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': token
+            'Authorization': `Bearer ${token}`
         }
     };
 
@@ -42,7 +42,7 @@ async function createApplication(application: Partial<DegreeCourseApplication>, 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': token
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(application)
     };
@@ -57,7 +57,7 @@ async function deleteApplication(token: string, id: string): Promise<void> {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': token
+            'Authorization': `Bearer ${token}`
         }
     };
 

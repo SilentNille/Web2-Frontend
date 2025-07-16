@@ -14,7 +14,7 @@ function getDegreeCourses(token: string): Promise<DegreeCourse[]> {
     const requestOptions = {
         method: 'GET',
         headers: {
-            'Authorization': token
+            'Authorization': `Bearer ${token}`
         }
     };
     return fetch(`${API_URL}/degreeCourses`, requestOptions)
@@ -25,7 +25,7 @@ function getDegreeCourseById(id: string, token: string): Promise<DegreeCourse> {
     const requestOptions = {
         method: 'GET',
         headers: {
-            'Authorization': token
+            'Authorization': `Bearer ${token}`
         }
     };
     return fetch(`${API_URL}/degreeCourses/${id}`, requestOptions)
@@ -36,7 +36,7 @@ function createDegreeCourse(degreeCourse: Omit<DegreeCourse, 'id'>, token: strin
     const requestOptions = {
         method: 'POST',
         headers: {
-            'Authorization': token,
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(degreeCourse)
@@ -49,7 +49,7 @@ function updateDegreeCourse(id: string, degreeCourse: Partial<DegreeCourse>, tok
     const requestOptions = {
         method: 'PUT',
         headers: {
-            'Authorization': token,
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(degreeCourse)
@@ -62,7 +62,7 @@ function deleteDegreeCourse(id: string, token: string): Promise<void> {
     const requestOptions = {
         method: 'DELETE',
         headers: {
-            'Authorization': token
+            'Authorization': `Bearer ${token}`
         }
     };
     return fetch(`${API_URL}/degreeCourses/${id}`, requestOptions)

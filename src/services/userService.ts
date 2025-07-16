@@ -6,7 +6,7 @@ export const userService = {
     async getAllUsers(token: string): Promise<User[]> {
         const response = await fetch(`${API_BASE_URL}/users`, {
             headers: {
-                Authorization: token,
+                Authorization: `Bearer ${token}`,
             },
         });
 
@@ -20,7 +20,7 @@ export const userService = {
     async getUserById(userID: string, token: string): Promise<User> {
         const response = await fetch(`${API_BASE_URL}/users/${userID}`, {
             headers: {
-                Authorization: token,
+                Authorization: `Bearer ${token}`,
             },
         });
 
@@ -36,7 +36,7 @@ export const userService = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: token,
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(user),
         });
@@ -53,7 +53,7 @@ export const userService = {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: token,
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(user),
         });
@@ -69,7 +69,7 @@ export const userService = {
         const response = await fetch(`${API_BASE_URL}/users/${userID}`, {
             method: "DELETE",
             headers: {
-                Authorization: token,
+                Authorization: `Bearer ${token}`,
             },
         });
 
