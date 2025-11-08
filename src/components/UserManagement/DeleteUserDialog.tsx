@@ -1,7 +1,7 @@
+import { Button, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, hideDeleteDialog } from "../../reducer/userSlice";
 import type { AppDispatch, RootState } from "../../store/store";
-import { Button, Container } from 'react-bootstrap';
 
 function DeleteUserDialog() {
     const dispatch = useDispatch<AppDispatch>();
@@ -18,23 +18,28 @@ function DeleteUserDialog() {
         dispatch(hideDeleteDialog());
     };
 
-    if (!showDeleteDialog) {
-        return null;
-    }
-
     return (
-        <Container id={`DeleteDialogUser${showDeleteDialog}`}>
-            <h3>Confirm Delete</h3>
-            <p>Are you sure you want to delete user "{showDeleteDialog}"?</p>
-            <Container>
-                <Button variant="danger" id="DeleteDialogConfirmButton" onClick={handleConfirmDelete}>
-                    Delete
-                </Button>
+        <Modal
+            show={!!showDeleteDialog}
+            onHide={handleCancelDelete}
+            centered
+            id={`DeleteDialogUser${showDeleteDialog}`}
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>Delete User</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>Are you sure you want to delete user "{showDeleteDialog}"?</p>
+            </Modal.Body>
+            <Modal.Footer>
                 <Button variant="secondary" id="DeleteDialogCancelButton" onClick={handleCancelDelete}>
                     Cancel
                 </Button>
-            </Container>
-        </Container>
+                <Button variant="danger" id="DeleteDialogConfirmButton" onClick={handleConfirmDelete}>
+                    Delete
+                </Button>
+            </Modal.Footer>
+        </Modal>
     );
 }
 

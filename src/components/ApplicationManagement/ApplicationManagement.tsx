@@ -13,7 +13,7 @@ import StartPageButton from '../StartPageButton';
 
 function ApplicationManagementPage() {
     const dispatch = useDispatch<AppDispatch>();
-    const { token, isAdmin, userID } = useSelector((state: RootState) => state.authentication);
+    const { token, isAdmin } = useSelector((state: RootState) => state.authentication);
     const { applications, loading, error } = useSelector((state: RootState) => state.applications);
 
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
@@ -142,7 +142,7 @@ function ApplicationManagementPage() {
                     </thead>
                     <tbody>
                         {enrichedApplications.map((application: DegreeCourseApplication) => (
-                            <tr key={application.id} id={`DegreeCourseApplicationItem${application.id}`}>
+                            <tr key={application.id} id={`DegreeCourseApplicationItem${application.applicantUserID}`}>
                                 <td id="ApplicantUserID">{application.applicantUserID}</td>
                                 <td id="DegreeCourseName">{application.degreeCourse?.name}</td>
                                 <td id="TargetPeriodYear">{application.targetPeriodYear}</td>

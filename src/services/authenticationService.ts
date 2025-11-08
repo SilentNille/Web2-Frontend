@@ -37,9 +37,9 @@ export const login = async (credentials: LoginCredentials): Promise<LoginRespons
 
         const token = authHeader.startsWith('Bearer ') ? authHeader.split(" ")[1] : authHeader;
 
-        const decodedToken = jwtDecode(token);
-        const isAdmin = decodedToken.isAdministrator || false;
-        const userID = decodedToken.sub || credentials.username;
+    const decodedToken = jwtDecode(token) as any;
+    const isAdmin = decodedToken.isAdministrator || false;
+    const userID = decodedToken.sub || credentials.username;
 
         return { token, isAdmin, userID };
     } catch (error) {

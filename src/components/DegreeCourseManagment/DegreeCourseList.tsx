@@ -44,7 +44,7 @@ function DegreeCourseList({
                 </thead>
                 <tbody>
                     {degreeCourses.map((degreeCourse: DegreeCourse) => (
-                        <tr key={degreeCourse.id} id={`DegreeCourseItem${degreeCourse.id}`}>
+                        <tr key={degreeCourse.id} id={`DegreeCourseItem${degreeCourse.name}`}>
                             <td id="UniversityName">{degreeCourse.universityName}</td>
                             <td id="DepartmentName">{degreeCourse.departmentName}</td>
                             <td id="Name">{degreeCourse.name}</td>
@@ -54,7 +54,7 @@ function DegreeCourseList({
                                         <>
                                             <Button
                                                 id={`DegreeCourseItemEditButton${degreeCourse.id}`}
-                                                variant="outline-primary"
+                                                variant="outline-secondary"
                                                 size="sm"
                                                 onClick={() => onEdit(degreeCourse)}
                                             >

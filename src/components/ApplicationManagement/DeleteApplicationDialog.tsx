@@ -29,7 +29,6 @@ const DeleteApplicationDialog: React.FC<DeleteApplicationDialogProps> = ({
             </Modal.Header>
             <Modal.Body>
                 <p>Are you sure you want to delete this application?</p>
-                <p className="text-muted">This action cannot be undone.</p>
             </Modal.Body>
             <Modal.Footer>
                 <Button

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Container } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { createUser, hideCreateForm } from "../../reducer/userSlice";
 import type { AppDispatch, RootState } from "../../store/store";
@@ -38,90 +38,94 @@ function CreateUserForm() {
 
     return (
         <Container id="UserManagementPageCreateComponent">
-            <h2>Create New User</h2>
-            <form onSubmit={handleSubmit}>
-                <Container>
-                    <label>
-                        User ID:
-                        <input
-                            id="CreateUserComponentEditUserID"
-                            type="text"
-                            name="userID"
-                            value={formData.userID}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                </Container>
+            <Row className="justify-content-center">
+                <Col md={8}>
+                    <h2 className="mb-4">Create New User</h2>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>User ID</Form.Label>
+                            <Form.Control
+                                id="CreateUserComponentEditUserID"
+                                type="text"
+                                name="userID"
+                                value={formData.userID}
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Group>
 
-                <Container>
-                    <label>
-                        First Name:
-                        <input
-                            id="CreateUserComponentEditFirstName"
-                            type="text"
-                            name="firstName"
-                            value={formData.firstName}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                </Container>
+                        <Row>
+                            <Col md={6}>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>First Name</Form.Label>
+                                    <Form.Control
+                                        id="CreateUserComponentEditFirstName"
+                                        type="text"
+                                        name="firstName"
+                                        value={formData.firstName}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col md={6}>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Last Name</Form.Label>
+                                    <Form.Control
+                                        id="CreateUserComponentEditLastName"
+                                        type="text"
+                                        name="lastName"
+                                        value={formData.lastName}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </Form.Group>
+                            </Col>
+                        </Row>
 
-                <Container>
-                    <label>
-                        Last Name:
-                        <input
-                            id="CreateUserComponentEditLastName"
-                            type="text"
-                            name="lastName"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                </Container>
+                        <Row>
+                            <Col md={6}>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control
+                                        id="CreateUserComponentEditPassword"
+                                        type="password"
+                                        name="password"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </Form.Group>
+                            </Col>
+                        </Row>
 
-                <Container>
-                    <label>
-                        Password:
-                        <input
-                            id="CreateUserComponentEditPassword"
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                </Container>
+                        <Form.Group className="mb-2">
+                            <Form.Check
+                                id="CreateUserComponentEditIsAdministrator"
+                                type="checkbox"
+                                name="isAdministrator"
+                                checked={formData.isAdministrator}
+                                onChange={handleChange}
+                                label="Is Administrator"
+                            />
+                        </Form.Group>
 
-                <Container>
-                    <label>
-                        <input
-                            id="CreateUserComponentEditIsAdministrator"
-                            type="checkbox"
-                            name="isAdministrator"
-                            checked={formData.isAdministrator}
-                            onChange={handleChange}
-                        />
-                        Is Administrator
-                    </label>
-                </Container>
-
-                <Container>
-                    <Button id="CreateUserComponentCreateUserButton" type="submit">
-                        Create User
-                    </Button>
-                    <Button
-                        id="OpenUserManagementPageListComponentButton"
-                        type="button"
-                        onClick={handleCancel}
-                    >
-                        Cancel
-                    </Button>
-                </Container>
-            </form>
+                        <div className="d-flex gap-2 mt-4">
+                            <Button id="CreateUserComponentCreateUserButton" type="submit" variant="primary">
+                                Create User
+                            </Button>
+                            <Button
+                                id="OpenUserManagementPageListComponentButton"
+                                type="button"
+                                variant="secondary"
+                                onClick={handleCancel}
+                            >
+                                Back to List
+                            </Button>
+                        </div>
+                    </Form>
+                </Col>
+            </Row>
         </Container>
     );
 }
