@@ -17,16 +17,14 @@ export default tseslint.config(
     },
     plugins: {
       'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-      'prettier': prettierPlugin,
+      'react-refresh': reactRefresh
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
-      ],
-      'prettier/prettier': 'error',
+      ]
     },
   },
   prettierConfig,
