@@ -1,34 +1,36 @@
 name: Build Docker image
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ toLower(github.repository_owner) }}/rest-server-app
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    build:
+        runs-on: ubuntu-latest
+        env:
+            REGISTRY: ghcr.io
+            IMAGE_NAME: rest-server-app
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+            - name: Log in to GitHub Container Registry
+              uses: docker/login-action@v3
+              with:
+                  registry: ghcr.io
+                  username: ${{ github.actor }}
+                  password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build image
-        run: |
-          docker build -t $REGISTRY/$IMAGE_NAME:latest .
+            - name: Build image
+              run: |
+                  OWNER_LC="${GITHUB_REPOSITORY_OWNER,,}"
+                  docker build -t "$REGISTRY/$OWNER_LC/$IMAGE_NAME:latest" .
 
-      # Optional: push the image (requires login step above)
-      - name: Push image
-        if: github.event_name == 'push'
-        run: |
-          docker push $REGISTRY/$IMAGE_NAME:latest
+            # Optional: push the image (requires login step above)
+            - name: Push image
+              if: github.event_name == 'push'
+              run: |
+                  OWNER_LC="${GITHUB_REPOSITORY_OWNER,,}"
+                  docker push "$REGISTRY/$OWNER_LC/$IMAGE_NAME:latest"
