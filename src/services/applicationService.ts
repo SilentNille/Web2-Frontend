@@ -1,6 +1,7 @@
 import type { DegreeCourseApplication } from '../types/DegreeCourseApplication';
 
-const API_URL = 'https://localhost/api';
+const BASE_URL = import.meta.env.REST_API_URL || 'localhost';
+const API_URL = `https://${BASE_URL}/api`;
 
 export const applicationService = {
     getMyApplications,

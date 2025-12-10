@@ -1,6 +1,6 @@
 import type { DegreeCourse } from '../types/DegreeCourse';
 
-const API_URL = 'https://localhost/api';
+const API_URL = `https://${import.meta.env.REST_API_URL || 'localhost'}/api`;
 
 export const degreeCourseService = {
     getDegreeCourses,
