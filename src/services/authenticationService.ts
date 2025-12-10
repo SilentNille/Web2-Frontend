@@ -14,7 +14,7 @@ export const login = async (credentials: LoginCredentials): Promise<LoginRespons
     const basicAuth = btoa(`${credentials.username}:${credentials.password}`);
 
     try {
-        const baseUrl = `https://${import.meta.env.REST_API_URL}:443` || 'https://localhost:443';
+        const baseUrl = `https://${import.meta.env.BACKEND_URL}:443` || 'https://localhost:443';
 
         const response = await fetch(`${baseUrl}/api/authenticate`, {
             method: "GET",
