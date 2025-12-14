@@ -1,6 +1,6 @@
 import type { DegreeCourseApplication } from '../types/DegreeCourseApplication';
 
-const BASE_URL = import.meta.env.BACKEND_URL;
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 const API_URL = `${BASE_URL}/api`;
 
 export const applicationService = {

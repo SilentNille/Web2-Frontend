@@ -14,7 +14,7 @@ export const login = async (credentials: LoginCredentials): Promise<LoginRespons
     const basicAuth = btoa(`${credentials.username}:${credentials.password}`);
 
     try {
-        const baseUrl = `${import.meta.env.BACKEND_URL}` || 'https://localhost:443';
+        const baseUrl = `${import.meta.env.VITE_BACKEND_URL}`;
 
         const response = await fetch(`${baseUrl}/api/authenticate`, {
             method: "GET",
@@ -32,6 +32,8 @@ export const login = async (credentials: LoginCredentials): Promise<LoginRespons
         const authHeader = response.headers.get("Authorization");
 
         if (!authHeader) {
+            console.warn("url:", `${baseUrl}/api/authenticate`);
+            console.error("response:", response);
             throw new Error("No authorization token received");
         }
 

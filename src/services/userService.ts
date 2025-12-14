@@ -1,6 +1,6 @@
 import type { CreateUserRequest, UpdateUserRequest, User } from "../types/User";
 
-const API_BASE_URL = `${import.meta.env.BACKEND_URL}/api`;
+const API_BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/api`;
 
 export const userService = {
     async getAllUsers(token: string): Promise<User[]> {
