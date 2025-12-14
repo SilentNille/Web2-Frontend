@@ -1,6 +1,8 @@
 services:
   front-end:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: front-end-app:latest
     environment:
       - VITE_BACKEND_URL=https://localhost:443
