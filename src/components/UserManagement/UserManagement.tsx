@@ -6,7 +6,6 @@ import EditUserForm from "./EditUserForm";
 import UserList from "./UserList";
 import { Container } from 'react-bootstrap';
 import MyNavBar from '../MyNavBar';
-import StartPageButton from '../StartPageButton';
 
 function UserManagementPage() {
     const { isAdmin } = useSelector((state: RootState) => state.authentication);
@@ -30,7 +29,6 @@ function UserManagementPage() {
 
                 <DeleteUserDialog />
             </Container>
-            <StartPageButton />
         </Container>
     );
 }
