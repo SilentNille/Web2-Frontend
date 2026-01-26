@@ -1,4 +1,4 @@
-import { Button, Container, Table } from 'react-bootstrap';
+import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import type { DegreeCourse } from '../../types/DegreeCourse';
 
 interface DegreeCourseListProps {
@@ -33,25 +33,23 @@ function DegreeCourseList({
                 )}
             </div>
 
-            <Table striped bordered hover responsive>
-                <thead>
-                    <tr>
-                        <th>University</th>
-                        <th>Department</th>
-                        <th>Name</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {degreeCourses.map((degreeCourse: DegreeCourse) => (
-                        <tr key={degreeCourse.id} id={`DegreeCourseItem${degreeCourse.name}`}>
-                            <td id="UniversityName">{degreeCourse.universityName}</td>
-                            <td id="DepartmentName">{degreeCourse.departmentName}</td>
-                            <td id="Name">{degreeCourse.name}</td>
-                            <td>
-                                <div className="d-flex gap-2">
+            <Row className="g-3">
+                {degreeCourses.map((degreeCourse: DegreeCourse) => (
+                    <Col key={degreeCourse.id} xs={12} sm={6} md={4} lg={3}>
+                        <Card id={`DegreeCourseItem${degreeCourse.name}`} className="h-100 shadow-sm">
+                            <Card.Body>
+                                <Card.Title className="mb-2" id="Name">{degreeCourse.name}</Card.Title>
+                                <Card.Text className="mb-1" id="UniversityName">
+                                    <strong>University:</strong> {degreeCourse.universityName}
+                                </Card.Text>
+                                <Card.Text className="mb-3" id="DepartmentName">
+                                    <strong>Department:</strong> {degreeCourse.departmentName}
+                                </Card.Text>
+                            </Card.Body>
+                            <Card.Footer className="bg-transparent border-0">
+                                <div className="d-flex flex-column gap-2">
                                     {isAdmin && (
-                                        <>
+                                        <div className="d-flex gap-2">
                                             <Button
                                                 id={`DegreeCourseItemEditButton${degreeCourse.id}`}
                                                 variant="outline-secondary"
@@ -68,7 +66,7 @@ function DegreeCourseList({
                                             >
                                                 Delete
                                             </Button>
-                                        </>
+                                        </div>
                                     )}
                                     <Button
                                         id={`CreateDegreeCourseApplicationForDegreeCourse${degreeCourse.id}`}
@@ -79,11 +77,11 @@ function DegreeCourseList({
                                         Create Application
                                     </Button>
                                 </div>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
+                            </Card.Footer>
+                        </Card>
+                    </Col>
+                ))}
+            </Row>
         </Container>
     );
 }

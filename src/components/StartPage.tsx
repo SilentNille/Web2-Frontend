@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import type { RootState } from "../store/store";
 import MyNavBar from './MyNavBar';
-import StartPageButton from './StartPageButton';
 
 function StartPage() {
     const isLoggedIn = useSelector((state: RootState) => state.authentication.isLoggedIn);
@@ -53,10 +52,6 @@ function StartPage() {
                         </Card>
                     </Col>
                 </Row>
-
-                <div className="text-center">
-                    <StartPageButton />
-                </div>
             </Container>
         </div>
     );

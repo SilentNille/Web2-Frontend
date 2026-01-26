@@ -101,7 +101,7 @@ function LoginDialog({ onClose }: LoginDialogProps) {
                         >
                             <span>Login</span>
                         </Button>
-                        <Button variant="light" onClick={handleClose} className="close-button" >
+                        <Button variant="secondary" onClick={handleClose} className="close-button" >
                             Cancel
                         </Button>
                 </Form>
